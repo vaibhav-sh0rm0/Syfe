@@ -26,17 +26,31 @@ ReadWriteMany volumes for deployment scaling
 
 
 
-### Steps ###
-- Create PersistentVolumeClaims and PersistentVolumes for the Wordpress application. PersistentVolumeClaims are used to request storage resources from the cluster, while PersistentVolumes are used to define the actual storage resources.
+
+# Configuration 
+-  PersistentVolumeClaims and PersistentVolumes for the Wordpress application. PersistentVolumeClaims are used to request storage resources from the cluster, while PersistentVolumes are used to define the actual storage resources.
+
+   ``` kubectl create namespace wordpress ```
 
 - Set up ReadWriteMany volumes for deployment scaling, as multiple pods may need to access the same data.
 
-- Create Dockerfiles for Wordpress, Mysql and Nginx. The Dockerfile for Wordpress should include the necessary configuration settings and plugins for your app.
+-  Dockerfiles for Wordpress, Mysql and Nginx. The Dockerfile for Wordpress should include the necessary configuration settings and plugins for your app.
+To use my dockerfile 
+``` 
+git clone https://github.com/vaibhav-sh0rm0/Syfe/blob/db80362b824c166315871e6280d492a40658c17a/Dockerfile.txt
 
+```
+   Build Dockerfile 
+
+
+``` docker build -t wordpress-app . ```
+
+Start Docker Container
+``` 
+docker run -p 80:80 -p 443:443 -p 8000:8000 -d wordpress-app
+ ```
 - Configure Nginx to proxy all requests to Wordpress.
 
 - Apply the Helm chart using the following command:
 
-```
-helm install my-release my-repo/wordpress
- ```
+   ``` helm install my-release my-repo/wordpress  ```

@@ -53,4 +53,16 @@ docker run -p 80:80 -p 443:443 -p 8000:8000 -d wordpress-app
 
 - Apply the Helm chart using the following command:
 
-   ``` helm install my-release my-repo/wordpress  ```
+    First, add the official WordPress Helm chart repository:
+   ``` 
+    helm repo add bitnami https://charts.bitnami.com/bitnami
+    ```
+    Install the WordPress chart with the following command:
+    ``` 
+    helm install my-release bitnami/wordpress
+    ```
+ 
+ Access the WordPress site by getting the external IP of the WordPress service:
+   ``` 
+   kubectl get svc my-release-wordpress --template="{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}"
+ ```

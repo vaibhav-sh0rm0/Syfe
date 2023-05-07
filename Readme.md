@@ -37,5 +37,6 @@ ReadWriteMany volumes for deployment scaling
 
 - Apply the Helm chart using the following command:
 
-```helm install my-release my-repo/wordpress
+```
+helm install my-release my-repo/wordpress
  ```
